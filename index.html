@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الجزيرة | AL JAZEERA</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="brand">
+        <img src="al-jazeera-logo.png" alt="AL JAZEERA">
+
+        <div>
+            <strong>الجزيرة</strong>
+            <span>AL JAZEERA</span>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#pitches">الملاعب</a>
+        <a href="#tracking">تتبع الحجز</a>
+    </nav>
+
+</header>
+
+
+<main id="home">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                ⚽ AL JAZEERA FOOTBALL
+            </span>
+
+            <h1>
+                احجز عندنا
+                <span>⚽🔥</span>
+            </h1>
+
+            <p>
+                احجز ملعبك بسهولة، اختار الموعد المناسب ليك،
+                ادفع وحافظ على كود الحجز بتاعك.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="#pitches" class="primary-btn">
+                    احجز ملعبك الآن
+                </a>
+
+                <a href="#tracking" class="secondary-btn">
+                    تتبع حجزك
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-ring"></div>
+
+            <img
+                src="al-jazeera-joker.jpg"
+                alt="AL JAZEERA Football">
+
+        </div>
+
+    </section>
+
+
+    <!-- PITCHES -->
+
+    <section class="pitches-section" id="pitches">
+
+        <div class="section-heading">
+
+            <span>⚽ الملاعب</span>
+
+            <h2>اختار ملعبك</h2>
+
+            <p>
+                اختار الملعب المناسب ليك واحجز موعدك.
+            </p>
+
+        </div>
+
+
+        <div class="pitches-grid">
+
+            <article class="pitch-card">
+
+                <div class="pitch-image">
+
+                    <img
+                        src="al-jazeera-small.jpg"
+                        alt="الملعب الصغير">
+
+                    <span class="pitch-label">
+                        SMALL
+                    </span>
+
+                </div>
+
+                <div class="pitch-content">
+
+                    <h3>
+                        الملعب الصغير
+                    </h3>
+
+                    <p>
+                        مناسب للمباريات والتدريبات
+                        والمجموعات الصغيرة.
+                    </p>
+
+                    <div class="pitch-footer">
+
+                        <span class="pitch-price">
+                            السعر تحدده الإدارة
+                        </span>
+
+                        <button
+                            type="button"
+                            onclick="openBooking('small')">
+
+                            احجز الآن
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="pitch-card">
+
+                <div class="pitch-image">
+
+                    <img
+                        src="al-jazeera-large.jpg"
+                        alt="الملعب الكبير">
+
+                    <span class="pitch-label">
+                        LARGE
+                    </span>
+
+                </div>
+
+                <div class="pitch-content">
+
+                    <h3>
+                        الملعب الكبير
+                    </h3>
+
+                    <p>
+                        مساحة أكبر للمباريات
+                        والتجمعات الرياضية.
+                    </p>
+
+                    <div class="pitch-footer">
+
+                        <span class="pitch-price">
+                            السعر تحدده الإدارة
+                        </span>
+
+                        <button
+                            type="button"
+                            onclick="openBooking('large')">
+
+                            احجز الآن
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRACKING -->
+
+    <section class="tracking-section" id="tracking">
+
+        <div class="tracking-box">
+
+            <span class="section-mini">
+                🔎 TRACK BOOKING
+            </span>
+
+            <h2>
+                تابع حجزك
+            </h2>
+
+            <p>
+                اكتب كود الحجز لمعرفة حالة الحجز.
+            </p>
+
+            <div class="tracking-form">
+
+                <input
+                    id="trackingCode"
+                    type="text"
+                    placeholder="مثال: JAZEERA-12345"
+                    autocomplete="off">
+
+                <button
+                    type="button"
+                    onclick="trackBooking()">
+
+                    تتبع الحجز
+
+                </button>
+
+            </div>
+
+            <div
+                id="trackingResult"
+                class="tracking-result">
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- BOOKING MODAL -->
+
+<div class="modal" id="bookingModal">
+
+    <div class="modal-box">
+
+        <button
+            class="modal-close"
+            type="button"
+            onclick="closeBooking()">
+
+            ×
+
+        </button>
+
+        <div class="modal-header">
+
+            <span>⚽ BOOKING</span>
+
+            <h2>
+                احجز ملعبك
+            </h2>
+
+            <p id="selectedPitch">
+                الملعب
+            </p>
+
+        </div>
+
+
+        <form id="bookingForm">
+
+            <input
+                type="hidden"
+                id="pitchType">
+
+
+            <div class="form-group">
+
+                <label>
+                    الاسم
+                </label>
+
+                <input
+                    id="customerName"
+                    type="text"
+                    required
+                    placeholder="اكتب اسمك">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    رقم الموبايل
+                </label>
+
+                <input
+                    id="customerPhone"
+                    type="tel"
+                    required
+                    placeholder="01xxxxxxxxx">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    تاريخ الحجز
+                </label>
+
+                <input
+                    id="bookingDate"
+                    type="date"
+                    required>
+
+            </div>
+
+
+            <div class="time-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        من
+                    </label>
+
+                    <input
+                        id="manualStartTime"
+                        type="time"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        إلى
+                    </label>
+
+                    <input
+                        id="manualEndTime"
+                        type="time"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div id="timeAvailability"></div>
+
+
+            <div
+                id="availableTimes"
+                class="available-times">
+            </div>
+
+
+            <div class="booking-info">
+
+                <div>
+
+                    <span>
+                        مدة الحجز
+                    </span>
+
+                    <strong id="matchDuration">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        السعر
+                    </span>
+
+                    <strong id="bookingPrice">
+                        يحدد من الإدارة
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn">
+
+                متابعة الدفع →
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div class="modal" id="paymentModal">
+
+    <div class="modal-box payment-box">
+
+        <button
+            class="modal-close"
+            type="button"
+            onclick="closePayment()">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-header">
+
+            <span>💳 PAYMENT</span>
+
+            <h2>
+                تأكيد الدفع
+            </h2>
+
+            <p>
+                ادفع عن طريق Vodafone Cash
+            </p>
+
+        </div>
+
+
+        <div class="payment-number">
+
+            <small>
+                رقم Vodafone Cash
+            </small>
+
+            <strong>
+                01121572167
+            </strong>
+
+            <button
+                type="button"
+                onclick="copyVodafone()">
+
+                نسخ الرقم
+
+            </button>
+
+        </div>
+
+
+        <form id="paymentForm">
+
+            <div class="form-group">
+
+                <label>
+                    الرقم اللي حولت منه
+                </label>
+
+                <input
+                    id="transferFrom"
+                    type="tel"
+                    required
+                    placeholder="01xxxxxxxxx">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    صورة إثبات التحويل
+                </label>
+
+                <input
+                    id="paymentProof"
+                    type="file"
+                    accept="image/*"
+                    required>
+
+            </div>
+
+
+            <div
+                id="proofPreview"
+                class="proof-preview">
+            </div>
+
+
+            <div class="payment-note">
+
+                ⚠️ بعد إرسال الطلب، هيظهر لك كود الحجز.
+                الحجز يفضل في انتظار تأكيد الإدارة.
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn">
+
+                إرسال الحجز ✓
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- SUCCESS -->
+
+<div class="modal" id="successModal">
+
+    <div class="modal-box success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <span>
+            AL JAZEERA
+        </span>
+
+        <h2>
+            تم إرسال طلبك بنجاح
+        </h2>
+
+        <p>
+            احتفظ بالكود ده علشان تقدر تتابع حالة الحجز.
+        </p>
+
+        <div class="generated-code">
+
+            <small>
+                كود الحجز
+            </small>
+
+            <strong id="generatedCode">
+                JAZEERA-00000
+            </strong>
+
+        </div>
+
+        <div class="waiting-status">
+            ⏳ في انتظار تأكيد الإدارة
+        </div>
+
+        <button
+            type="button"
+            class="submit-btn"
+            onclick="closeSuccess()">
+
+            تمام
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<section
+    id="adminPanel"
+    class="admin-panel">
+
+    <div
+        class="admin-overlay"
+        onclick="closeAdmin()">
+    </div>
+
+
+    <div class="admin-box">
+
+        <button
+            type="button"
+            class="admin-close"
+            onclick="closeAdmin()">
+
+            ×
+
+        </button>
+
+
+        <!-- LOGIN -->
+
+        <div id="adminLogin">
+
+            <span class="admin-label">
+                ADMIN 2026
+            </span>
+
+            <h2>
+                لوحة الإدارة
+            </h2>
+
+            <p>
+                أدخل كلمة المرور للدخول.
+            </p>
+
+
+            <div class="form-group">
+
+                <label>
+                    كلمة المرور
+                </label>
+
+                <input
+                    id="adminPassword"
+                    type="password"
+                    placeholder="••••••••">
+
+            </div>
+
+
+            <button
+                type="button"
+                class="submit-btn"
+                onclick="adminLogin()">
+
+                دخول الإدارة →
+
+            </button>
+
+        </div>
+
+
+        <!-- DASHBOARD -->
+
+        <div
+            id="adminDashboard"
+            class="hidden">
+
+            <div class="admin-head">
+
+                <div>
+
+                    <span>
+                        AL JAZEERA
+                    </span>
+
+                    <h2>
+                        لوحة التحكم
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-stats">
+
+                <div>
+
+                    <small>
+                        كل الحجوزات
+                    </small>
+
+                    <strong id="adminBookingCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        قيد الانتظار
+                    </small>
+
+                    <strong id="adminPendingCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        مؤكدة
+                    </small>
+
+                    <strong id="adminConfirmedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- SETTINGS -->
+
+            <div class="admin-card">
+
+                <h3>
+                    ⚙️ إعدادات الملاعب
+                </h3>
+
+
+                <div class="admin-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            سعر الملعب الصغير / ساعة
+                        </label>
+
+                        <input
+                            id="smallPrice"
+                            type="number"
+                            min="0">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            سعر الملعب الكبير / ساعة
+                        </label>
+
+                        <input
+                            id="largePrice"
+                            type="number"
+                            min="0">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            وقت الفتح
+                        </label>
+
+                        <input
+                            id="adminOpenTime"
+                            type="time">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            وقت الغلق
+                        </label>
+
+                        <input
+                            id="adminCloseTime"
+                            type="time">
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="submit-btn"
+                    onclick="saveAdminSettings()">
+
+                    حفظ الإعدادات ✓
+
+                </button>
+
+            </div>
+
+
+            <!-- BOOKINGS -->
+
+            <div class="admin-card">
+
+                <div class="admin-card-title">
+
+                    <h3>
+                        📋 الحجوزات
+                    </h3>
+
+                    <button
+                        type="button"
+                        onclick="renderAdminBookings()">
+
+                        تحديث ↻
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="adminBookingsList"
+                    class="admin-bookings-list">
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="secondary-btn admin-logout"
+                onclick="closeAdmin()">
+
+                إغلاق لوحة الإدارة
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN TRIGGER -->
+
+<button
+    id="adminTrigger"
+    class="admin-trigger"
+    type="button"
+    onclick="openAdmin()"
+    aria-label="Admin">
+
+    ⚙
+
+</button>
+
+
+<footer>
+
+    <div class="footer-brand">
+
+        <img
+            src="al-jazeera-logo.png"
+            alt="AL JAZEERA">
+
+        <div>
+
+            <strong>
+                الجزيرة
+            </strong>
+
+            <span>
+                AL JAZEERA
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <p>
+        للحجز والاستفسار:
+        <a href="tel:01550060383">
+            01550060383
+        </a>
+    </p>
+
+
+    <p class="copyright">
+        © 2026 AL JAZEERA — جميع الحقوق محفوظة
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
